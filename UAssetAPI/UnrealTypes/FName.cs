@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using UAssetAPI.JSON;
 using UAssetAPI.UnrealTypes;
+using UAssetAPI.ExportTypes;
 
 namespace UAssetAPI.UnrealTypes
 {
@@ -61,6 +62,7 @@ namespace UAssetAPI.UnrealTypes
         /// <returns>The human-readable string that represents this FName.</returns>
         public override string ToString()
         {
+            //if (Value == null) return FString.NullCase;
             if (Number > 0) return Value.ToString() + "_" + (Number - 1);
             return Value.ToString();
         }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.UnrealTypes;
+using UAssetAPI.ExportTypes;
 
 namespace UAssetAPI.PropertyTypes.Structs
 {
@@ -12,16 +13,7 @@ namespace UAssetAPI.PropertyTypes.Structs
         public FString InputName;
         [JsonProperty]
         public FName ExpressionName;
-        [JsonProperty]
-        public int Mask;
-        [JsonProperty]
-        public int MaskR; 
-        [JsonProperty]
-        public int MaskG; 
-        [JsonProperty]
-        public int MaskB;
-        [JsonProperty]
-        public int MaskA;
+
         public MaterialInputPropertyData()
         {
 
@@ -45,11 +37,7 @@ namespace UAssetAPI.PropertyTypes.Structs
                 {
                     InputName = reader.ReadFString();
                 }
-                Mask = reader.ReadInt32();
-                MaskR = reader.ReadInt32();
-                MaskG = reader.ReadInt32();
-                MaskB = reader.ReadInt32();
-                MaskA = reader.ReadInt32();
+                reader.ReadBytes(20); // editor only data placeholder
                 ExpressionName = reader.ReadFName();
             }
         }
@@ -68,11 +56,7 @@ namespace UAssetAPI.PropertyTypes.Structs
                 {
                     totalSize += writer.Write(InputName);
                 }
-                writer.Write(Mask); totalSize += sizeof(int);
-                writer.Write(MaskR); totalSize += sizeof(int);
-                writer.Write(MaskG); totalSize += sizeof(int);
-                writer.Write(MaskB); totalSize += sizeof(int);
-                writer.Write(MaskA); totalSize += sizeof(int);
+                writer.Write(new byte[20]); totalSize += 20;
                 writer.Write(ExpressionName); totalSize += sizeof(int) * 2;
             }
             return totalSize;

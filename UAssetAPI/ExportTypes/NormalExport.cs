@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.UnrealTypes;
 
-namespace UAssetAPI
+namespace UAssetAPI.ExportTypes
 {
     /// <summary>
     /// A regular export, with no special serialization. Serialized as a None-terminated property list.
